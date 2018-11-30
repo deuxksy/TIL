@@ -12,7 +12,10 @@
 util 에서 는 api 로 core 호출  
 app 에서 는 implementation 로 util 호출  
 
-## allprojects subprojects 차이
+## allprojects,subprojects,project(":utils") 차이
+
+gradle -q hello 로 테스트
 
 - allprojects: root 프로젝트를 포함한 모든 프로젝트에 적용
 - subprojects: root 프로젝트를 제외한 자식 프로젝트에 적용
+- project(":utils"): utils 프로젝트에 만 적용

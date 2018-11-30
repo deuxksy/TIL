@@ -20,8 +20,27 @@ subprojects {
     }
 }
 
+// 특정 1개 프로젝트에 적용
 project(':utils').hello {
     doLast {
         println "- utils"
+    }
+}
+
+// 복수의 프로젝트에 적용
+configure([project(':core'), project(':utils')]) {
+    hello {
+        doLast {
+            println "- core, utils"
+        }
+    }
+}
+
+// 프로젝트 이름으로 적용
+configure(subprojects.findAll { it.name == 'app' }) {
+    hello {
+        doLast {
+            println "- app"
+        }
     }
 }
