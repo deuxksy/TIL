@@ -24,6 +24,6 @@ dependencies {
 mainClassName = 'org.gradle.samples.app.Main'
 
 run {
-    #실행 할때 console 에서 입력 받기
+    // 실행 할때 console 에서 입력 받기
     standardInput = System.in
 }
