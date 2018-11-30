@@ -6,8 +6,10 @@ Gradle Version 5.0 올랐구나 예전에 2 버전 일때 공부 하고 더 안�
 
 ## 몰랐던 기능
 
-- [x] jvm, os 의 환경설정 사용하기 gradle-env
-- [x] compile 대신 api implementation 사용하기 gradle-multi-project
+- [x] gradle-env: jvm, os 의 환경설정 사용
+- [x] gradle-multi-project
+  - compile 대신 api 또는 implementation 사용
+  - allprojects, subprojects, project(":utils") 3개 기능 차이
 
 ## 새로운 기능
 

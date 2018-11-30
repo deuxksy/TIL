@@ -1,5 +1,27 @@
+// root 프로젝트를 포함한 모든 프로젝트에 적용
 allprojects {
    repositories {
       jcenter()
    }
+
+   task hello {
+        doLast { task ->
+            println "I'm $task.project.name"
+        }
+    }
+}
+
+// 자식 프로젝트에만 적용
+subprojects {
+   hello {
+        doLast {
+            println "- subproject"
+        }
+    }
+}
+
+project(':utils').hello {
+    doLast {
+        println "- utils"
+    }
 }
