@@ -4,6 +4,8 @@ Build 도구
 
 Gradle Version 5.0 올랐구나 예전에 2 버전 일때 공부 하고 더 안해서 3, 4 버전의 새기능과 5 버전의 새기능을 학습 하자
 
+## [과거 기능 정리](https://github.com/deuxksy/env/blob/master/java/gradle/build.gradle)
+
 ## 몰랐던 기능
 
 - [x] gradle-env: jvm, os 의 환경설정 사용
