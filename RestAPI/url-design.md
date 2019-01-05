@@ -4,21 +4,21 @@
 
 권한에 대한 부분이 부족함
 
-1. URL 보고 무슨 API 인지 쉽고 직관적
-1. URL 은 너무 깊게 만들지 말자
-1. 동사 보다는 명사
+1 URL 보고 무슨 API 인지 쉽고 직관적
+1 URL 은 너무 깊게 만들지 말자
+1 동사 보다는 명사
   - /getDog
   - /setDog
-1. 단수 보다는 복수형
+1 단수 보다는 복수형
   - /dogs
   - /dog/happy
-1. response code
+1 response code
   - 200: 성공
   - 400: field 유용하지 않음
   - 401: 인증 실패
   - 404: 니가 알던 그거
   - 500: 오류
-1. response body 다국어 처리하기
+1 response body 다국어 처리하기
 ```json
 {
   "error": 20003,
