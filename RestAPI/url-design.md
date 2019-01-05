@@ -2,8 +2,6 @@
 
 ## 가이드
 
-api 별 권한 과 보안 
-
 - session 없음 보안은 http header 에 인증정보를 넣음 https 만 사용
   - Authorization: Basic QWxhxxxxxxxxxxxxxx==
   - Schemename:space:Scheme-specific Value
@@ -33,9 +31,11 @@ api 별 권한 과 보안
   - 200: 성공
   - 400: field 유용하지 않음
   - 401: 인증 실패
+  - 402: 결제가 필요
   - 403: 권한 없음
   - 404: 니가 알던 그거
   - 500: 오류
+  - [MDN-HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status) 참조 해서 추가 하기
 - response body 다국어 처리하기
 ```json
 {
@@ -47,6 +47,7 @@ api 별 권한 과 보안
   }]
 }
 ```
+- /url/group/sub/
 - 버전관리
 api.server.com/{서비스명}/{버번}/{리소스}
 api.server.com/product/v1/wish
@@ -64,6 +65,7 @@ api.server.com/product/v1/wish?fields=name,price,seller.name
   - api.server.com/product/v1/brand?q=keyword=%25EC%2599%25B8%25EB%25A1%259C%25EC%259B%258C,order=1,brand=CEE&offset=100&limit=25
 - HATEOS 다른 리소스, 연관 정보 를 링크에 제공
 api.server.com/product/v1/wish?offset=100&limit=25
+```json
 {  
   "product":[
     {
@@ -81,6 +83,7 @@ api.server.com/product/v1/wish?offset=100&limit=25
     {"rel": "last_page", "href": "api.server.com/product/v1/wish?offset=122&limit=5"},
   ]
 }
+```
 - 단일 서버 API URL CORS 문제
   - reverse proxy
   - netflix zuul
@@ -89,5 +92,6 @@ api.server.com/product/v1/wish?offset=100&limit=25
 
 ## 참조
 [Archer Yoo의 RESTful API 설계](https://www.slideshare.net/brotherjinho/restful-api-64494716)
-[조대협의 REST API 설계](ttps://www.slideshare.net/Byungwook/rest-api-60505484)
+[조대협의 REST API 설계](https://www.slideshare.net/Byungwook/rest-api-60505484) 32 페이지 인증 권한 좀더 보자
+[nexusz99 REST API 디자인 개요](https://www.slideshare.net/nexusz99/rest-api-48600643)
 [Stormpath Design Beautiful REST + JSON APIs](https://www.slideshare.net/stormpath/rest-jsonapis)
