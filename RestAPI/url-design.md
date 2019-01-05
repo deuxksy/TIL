@@ -98,3 +98,4 @@ api.server.com/product/v1/wish?offset=100&limit=25
 - [nexusz99 REST API 디자인 개요](https://www.slideshare.net/nexusz99/rest-api-48600643)
 - [Stormpath Design Beautiful REST + JSON APIs](https://www.slideshare.net/stormpath/rest-jsonapis)
 - [백기선의 REST API Development with Spring](https://www.slideshare.net/whiteship/rest-api-development-with-spring)
+  - [Sample Project](https://github.com/keesun/study/tree/master/ksug201811restapi)
