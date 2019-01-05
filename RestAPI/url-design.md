@@ -4,8 +4,7 @@
 
 api 별 권한 과 보안 
 
-- https 만 사용
-- session 없음 request 마다 인증 하기
+- session 없음 보안은 http header 에 인증정보를 넣음 https 만 사용
   - Authorization: Basic QWxhxxxxxxxxxxxxxx==
   - Schemename:space:Scheme-specific Value
 - 문서화 테스트 Swagger, Spring Rest Doc
@@ -27,8 +26,8 @@ api 별 권한 과 보안
   
 |URL|GET|POST|PUT|DELETE|
 |---|---|---|---|---|
-|/products|상품목록 조회|상품 생성| 전체 상품 수정 | 전체 상품 삭제 |
-|/products/1|지정 상품 조회|-|지정된 상품 수정|지정 상품 삭제|
+|/products|상품목록 조회|상품 생성| ~~전체 상품 수정~~ | ~~전체 상품 삭제~~ |
+|/products/1|지정 상품 조회|~~상품생성~~|지정된 상품 수정|지정 상품 삭제|
 
 - response code
   - 200: 성공
@@ -91,3 +90,4 @@ api.server.com/product/v1/wish?offset=100&limit=25
 ## 참조
 [Archer Yoo의 RESTful API 설계](https://www.slideshare.net/brotherjinho/restful-api-64494716)
 [조대협의 REST API 설계](ttps://www.slideshare.net/Byungwook/rest-api-60505484)
+[Stormpath Design Beautiful REST + JSON APIs](https://www.slideshare.net/stormpath/rest-jsonapis)
