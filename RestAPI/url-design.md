@@ -7,17 +7,17 @@
 1. URL 보고 무슨 API 인지 쉽고 직관적
 1. URL 은 너무 깊게 만들지 말자
 1. 동사 보다는 명사
-- /getDog
-- /setDog
+  - /getDog
+  - /setDog
 1. 단수 보다는 복수형
-- /dogs
-- /dog/happy
+  - /dogs
+  - /dog/happy
 1. response code
-- 200: 성공
-- 400: field 유용하지 않음
-- 401: 인증 실패
-- 404: 니가 알던 그거
-- 500: 오류
+  - 200: 성공
+  - 400: field 유용하지 않음
+  - 401: 인증 실패
+  - 404: 니가 알던 그거
+  - 500: 오류
 1. response body 다국어 처리하기
 ```json
 {
@@ -56,10 +56,10 @@ api.server.com/product/v1/wish?offset=100&limit=25
   ]
 }
 1. 단일 서버 API URL CORS 문제
-- reverse proxy
-- netflix zuul
-- aws alb 
-- graphql 이거는 아직 감 안잡힘 
+  - reverse proxy
+  - netflix zuul
+  - aws alb 
+  - graphql 이거는 아직 감 안잡힘 
 1. API 인증 방식
 로그인을 하면 api token 을 발급 하여서 api 통신시 token 일정 시간이 지나면 expiration  
 
