@@ -91,7 +91,7 @@ api.server.com/product/v1/wish?offset=100&limit=25
   - graphql 이거는 아직 감 안잡힘 
 
 ## 참조
-[Archer Yoo의 RESTful API 설계](https://www.slideshare.net/brotherjinho/restful-api-64494716)
-[조대협의 REST API 설계](https://www.slideshare.net/Byungwook/rest-api-60505484) 32 페이지 인증 권한 좀더 보자
-[nexusz99 REST API 디자인 개요](https://www.slideshare.net/nexusz99/rest-api-48600643)
-[Stormpath Design Beautiful REST + JSON APIs](https://www.slideshare.net/stormpath/rest-jsonapis)
+- [Archer Yoo의 RESTful API 설계](https://www.slideshare.net/brotherjinho/restful-api-64494716)
+- [조대협의 REST API 설계](https://www.slideshare.net/Byungwook/rest-api-60505484) 32 페이지 인증 권한 좀더 보자
+- [nexusz99 REST API 디자인 개요](https://www.slideshare.net/nexusz99/rest-api-48600643)
+- [Stormpath Design Beautiful REST + JSON APIs](https://www.slideshare.net/stormpath/rest-jsonapis)
