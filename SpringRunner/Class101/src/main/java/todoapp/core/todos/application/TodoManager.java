@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import todoapp.core.todos.domain.Todo;
@@ -19,38 +20,52 @@ import todoapp.core.todos.domain.TodoRepository;
 @Service
 public class TodoManager implements TodoFinder, TodoEditor {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private TodoRepository repository;
-    
-    public TodoManager(TodoRepository repository) {
-		this.repository = repository;
-	}
+  /**
+   * interface TodoRepository 를 상속 받는 2개의 Class 가 있을때는 TodoRepository todoRepository @Autowired 안됨
+  private TodoRepository todoRepository;
 
-	@Override
-    public List<Todo> getAll() {
-        return repository.findAll();
-    }
+  public TodoManager(TodoRepository todoRepository) {
+  this.todoRepository = todoRepository;
+  }
+   */
 
-	@Override
-    public Todo create(String title) {
-        return repository.save(Todo.create(title));
-    }
+  /**
+   * 생성자를 할때 각각의 이름 TodoRepositry 를 @Autowired 한다.
+   */
+  private TodoRepository inMemoryTodoRepository;
+  private TodoRepository otherTodoRepository;
 
-    @Override
-    public Todo update(Long id, String title, boolean completed) {
-        return repository.findById(id)
-                         .map(todo -> todo.update(title, completed))
-                         .map(repository::save)
-                         .orElseThrow(() -> new TodoEntityNotFoundException(id));
-    }
+  public TodoManager(TodoRepository inMemoryTodoRepository, TodoRepository otherTodoRepository) {
+    this.inMemoryTodoRepository = inMemoryTodoRepository;
+    this.otherTodoRepository = otherTodoRepository;
+  }
 
-    @Override
-    public Todo delete(Long id) {
-        Optional<Todo> todo = repository.findById(id);
-        todo.ifPresent(repository::delete);
+  @Override
+  public List<Todo> getAll() {
+    return inMemoryTodoRepository.findAll();
+  }
 
-        return todo.orElseThrow(() -> new TodoEntityNotFoundException(id));
-    }
+  @Override
+  public Todo create(String title) {
+    return inMemoryTodoRepository.save(Todo.create(title));
+  }
+
+  @Override
+  public Todo update(Long id, String title, boolean completed) {
+    return inMemoryTodoRepository.findById(id)
+            .map(todo -> todo.update(title, completed))
+            .map(inMemoryTodoRepository::save)
+            .orElseThrow(() -> new TodoEntityNotFoundException(id));
+  }
+
+  @Override
+  public Todo delete(Long id) {
+    Optional<Todo> todo = inMemoryTodoRepository.findById(id);
+    todo.ifPresent(inMemoryTodoRepository::delete);
+
+    return todo.orElseThrow(() -> new TodoEntityNotFoundException(id));
+  }
 
 }
