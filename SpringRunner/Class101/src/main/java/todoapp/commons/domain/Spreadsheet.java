@@ -6,74 +6,74 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * ?Š¤?”„? ˆ?“œ?‹œ?Š¸ ëª¨ë¸: ?–‰ê³? ?—´ë¡? êµ¬ì„±?œ ?°?´?„° êµ¬ì¡°
+ * ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ëª¨ë¸: ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ï¿½? êµ¬ì„±?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ êµ¬ì¡°
  *
  * @author springrunner.kr@gmail.com
  */
 public class Spreadsheet {
 
-	private String name;
-	private Optional<Row> header;
-	private List<Row> rows;
+  private String name;
+  private Optional<Row> header;
+  private List<Row> rows;
 
-	public Spreadsheet(String name, Row header, List<Row> rows) {
-		this.name = name;
-		this.header = Optional.ofNullable(header);
-		this.rows = rows;
-	}
+  public Spreadsheet(String name, Row header, List<Row> rows) {
+    this.name = name;
+    this.header = Optional.ofNullable(header);
+    this.rows = rows;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public Optional<Row> getHeader() {
-		return header;
-	}
+  public Optional<Row> getHeader() {
+    return header;
+  }
 
-    public boolean hasHeader() {
-        return header.isPresent();
+  public boolean hasHeader() {
+    return header.isPresent();
+  }
+
+  public List<Row> getRows() {
+    return rows;
+  }
+
+  public boolean hasRows() {
+    return Objects.nonNull(rows) && !rows.isEmpty();
+  }
+
+
+  public static class Row {
+
+    private List<Cell<?>> cells = new ArrayList<>();
+
+    public Row addCell(Cell<?> cell) {
+      this.cells.add(cell);
+      return this;
     }
 
-	public List<Row> getRows() {
-		return rows;
-	}
-
-    public boolean hasRows() {
-        return Objects.nonNull(rows) && !rows.isEmpty();
+    public Row addCell(Object cellValue) {
+      return this.addCell(new Cell<>(cellValue));
     }
 
+    public List<Cell<?>> getCells() {
+      return cells;
+    }
 
-	public static class Row {
-	
-		private List<Cell<?>> cells = new ArrayList<>();
-		
-		public Row addCell(Cell<?> cell) {
-			this.cells.add(cell);
-			return this;
-		}
-		
-		public Row addCell(Object cellValue) {
-			return this.addCell(new Cell<>(cellValue));
-		}
+  }
 
-		public List<Cell<?>> getCells() {
-			return cells;
-		}
-		
-	}
-	
-	public static class Cell<T> {
-		
-		private T value;
+  public static class Cell<T> {
 
-		public Cell(T value) {
-			this.value = value;
-		}
+    private T value;
 
-		public T getValue() {
-			return value;
-		}
-		
-	}
-	
+    public Cell(T value) {
+      this.value = value;
+    }
+
+    public T getValue() {
+      return value;
+    }
+
+  }
+
 }

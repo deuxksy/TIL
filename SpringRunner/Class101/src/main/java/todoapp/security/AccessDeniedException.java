@@ -3,14 +3,14 @@ package todoapp.security;
 import todoapp.commons.SystemException;
 
 /**
- * ê¶Œí•œ?´ ?—†?–´ ? ‘ê·? ë¶ˆê? ?ƒ?™©?‹œ ë°œìƒ ê°??Š¥?•œ ?˜ˆ?™¸ ?´?˜?Š¤
+ * ê¶Œí•œ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? ë¶ˆï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë°œìƒ ï¿½??ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
  *
  * @author springrunner.kr@gmail.com
  */
 public class AccessDeniedException extends SystemException {
 
-    public AccessDeniedException() {
-        super("? ‘ê·¼ì„ ê±°ë??•©?‹ˆ?‹¤.");
-    }
+  public AccessDeniedException() {
+    super("?ï¿½ï¿½ê·¼ì„ ê±°ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.");
+  }
 
 }

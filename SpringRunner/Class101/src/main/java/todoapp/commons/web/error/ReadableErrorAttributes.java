@@ -15,51 +15,51 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- * ?Š¤?”„ë§ë??Š¸?— ê¸°ë³¸ êµ¬í˜„ì²´ì¸ {@link DefaultErrorAttributes}?— message ?†?„±?„ ?®?–´?“°ê¸? ?•  ëª©ì ?œ¼ë¡? ?‘?„±?•œ ì»´í¬?„Œ?Š¸?´?‹¤.
- *
- * DefaultErrorAttributes?Š” message ?†?„±?„ ?˜ˆ?™¸ ê°ì²´?˜ ê°’ì„ ?‚¬?š©?•˜ê¸? ?•Œë¬¸ì— ?‚¬?š©?ê°? ?½ê¸°ì— ì¢‹ì? ë¬¸êµ¬ê°? ?•„?‹ˆ?‹¤.
- * ?•´?‹¹ ë©”ì‹œì§?ë¥? ë³´ë‹¤ ?½ê¸? ì¢‹ì? ë¬¸êµ¬ë¡? ê°?ê³µí•´?„œ ? œê³µí•œ?‹¤.
+ * ?ï¿½ï¿½?ï¿½ï¿½ë§ï¿½??ï¿½ï¿½?ï¿½ï¿½ ê¸°ë³¸ êµ¬í˜„ì²´ì¸ {@link DefaultErrorAttributes}?ï¿½ï¿½ message ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ ëª©ì ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ì»´í¬?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
+ * <p>
+ * DefaultErrorAttributes?ï¿½ï¿½ message ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ê°ì²´?ï¿½ï¿½ ê°’ì„ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ë¬¸ì— ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ê¸°ì— ì¢‹ï¿½? ë¬¸êµ¬ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
+ * ?ï¿½ï¿½?ï¿½ï¿½ ë©”ì‹œï¿½?ï¿½? ë³´ë‹¤ ?ï¿½ï¿½ï¿½? ì¢‹ï¿½? ë¬¸êµ¬ï¿½? ï¿½?ê³µí•´?ï¿½ï¿½ ?ï¿½ï¿½ê³µí•œ?ï¿½ï¿½.
  *
  * @author springrunner.kr@gmail.com
  */
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class ReadableErrorAttributes implements ErrorAttributes, HandlerExceptionResolver, Ordered {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private final DefaultErrorAttributes delegate;
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
+  private final DefaultErrorAttributes delegate;
 
-    public ReadableErrorAttributes() {
-        this(false);
-    }
+  public ReadableErrorAttributes() {
+    this(false);
+  }
 
-    public ReadableErrorAttributes(boolean includeException) {
-        this.delegate = new DefaultErrorAttributes(includeException);
-    }
+  public ReadableErrorAttributes(boolean includeException) {
+    this.delegate = new DefaultErrorAttributes(includeException);
+  }
 
-    @Override
-    public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
-        Map<String, Object> attributes = delegate.getErrorAttributes(webRequest, includeStackTrace);
-        Throwable error = getError(webRequest);
+  @Override
+  public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
+    Map<String, Object> attributes = delegate.getErrorAttributes(webRequest, includeStackTrace);
+    Throwable error = getError(webRequest);
 
-        // TODO attributes, error ?„ ?‚¬?š©?•´?„œ message ?†?„±?„ ?½ê¸? ì¢‹ì? ë¬¸êµ¬ë¡? ê°?ê³µí•œ?‹¤.
-        // TODO ex) attributes.put("message", "ë¬¸êµ¬");
+    // TODO attributes, error ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ message ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? ì¢‹ï¿½? ë¬¸êµ¬ï¿½? ï¿½?ê³µí•œ?ï¿½ï¿½.
+    // TODO ex) attributes.put("message", "ë¬¸êµ¬");
 
-        return attributes;
-    }
+    return attributes;
+  }
 
-    @Override
-    public Throwable getError(WebRequest webRequest) {
-        return delegate.getError(webRequest);
-    }
+  @Override
+  public Throwable getError(WebRequest webRequest) {
+    return delegate.getError(webRequest);
+  }
 
-    @Override
-    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception error) {
-        return delegate.resolveException(request, response, handler, error);
-    }
+  @Override
+  public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception error) {
+    return delegate.resolveException(request, response, handler, error);
+  }
 
-    @Override
-    public int getOrder() {
-        return Ordered.HIGHEST_PRECEDENCE;
-    }
+  @Override
+  public int getOrder() {
+    return Ordered.HIGHEST_PRECEDENCE;
+  }
 
 }

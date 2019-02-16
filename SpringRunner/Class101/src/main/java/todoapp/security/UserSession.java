@@ -11,18 +11,18 @@ import java.util.Objects;
  */
 public class UserSession {
 
-    private final User user;
+  private final User user;
 
-    public UserSession(User user) {
-        this.user = Objects.requireNonNull(user, "user object must be not null");
-    }
+  public UserSession(User user) {
+    this.user = Objects.requireNonNull(user, "user object must be not null");
+  }
 
-    public String getName() {
-        return user.getUsername();
-    }
+  public String getName() {
+    return user.getUsername();
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public User getUser() {
+    return user;
+  }
 
 }

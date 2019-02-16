@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RolesVerifyHandlerInterceptor implements HandlerInterceptor, RolesAllowedSupport {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Override
-    public final boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        throw new UnsupportedOperationException("unimplemented feature for RolesVerifyHandlerInterceptor");
-    }
+  @Override
+  public final boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    throw new UnsupportedOperationException("unimplemented feature for RolesVerifyHandlerInterceptor");
+  }
 
 }

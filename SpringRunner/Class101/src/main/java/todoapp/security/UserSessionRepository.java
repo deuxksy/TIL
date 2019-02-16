@@ -7,8 +7,10 @@ package todoapp.security;
  */
 public interface UserSessionRepository {
 
-    UserSession get();
-    void set(UserSession session);
-    void clear();
+  UserSession get();
+
+  void set(UserSession session);
+
+  void clear();
 
 }

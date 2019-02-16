@@ -10,36 +10,36 @@ import java.util.Locale;
 import java.util.Objects;
 
 /**
- * ?˜ˆ?™¸ë¥? {@link MessageSource}ë¥? ?†µ?•´ ? ? ˆ?•œ ë©”ì‹œì§?ë¡? ë²ˆì—­?•˜?Š” ì»´í¬?„Œ?Š¸
+ * ?ï¿½ï¿½?ï¿½ï¿½ï¿½? {@link MessageSource}ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë©”ì‹œï¿½?ï¿½? ë²ˆì—­?ï¿½ï¿½?ï¿½ï¿½ ì»´í¬?ï¿½ï¿½?ï¿½ï¿½
  *
  * @author springrunner.kr@gmail.com
  */
 public class DefaultExceptionMessageTranslator implements ExceptionMessageTranslator {
 
-    private MessageSource messageSource;
+  private MessageSource messageSource;
 
-    public DefaultExceptionMessageTranslator(MessageSource messageSource) {
-        this.messageSource = Objects.requireNonNull(messageSource);
+  public DefaultExceptionMessageTranslator(MessageSource messageSource) {
+    this.messageSource = Objects.requireNonNull(messageSource);
+  }
+
+  @Override
+  public String getMessage(Throwable throwable, Locale locale) {
+    return getMessage(throwable, throwable.getMessage(), locale);
+  }
+
+  @Override
+  public String getMessage(Throwable throwable, String defaultMessage, Locale locale) {
+    if (ClassUtils.isAssignableValue(MessageSourceResolvable.class, throwable.getClass())) {
+      return messageSource.getMessage((MessageSourceResolvable) throwable, locale);
     }
 
-    @Override
-    public String getMessage(Throwable throwable, Locale locale) {
-        return getMessage(throwable, throwable.getMessage(), locale);
+    Throwable rootCause = ThrowableUtils.getRootCause(throwable);
+    if (ClassUtils.isAssignableValue(MessageSourceResolvable.class, rootCause.getClass())) {
+      return messageSource.getMessage((MessageSourceResolvable) rootCause, locale);
     }
 
-    @Override
-    public String getMessage(Throwable throwable, String defaultMessage, Locale locale) {
-        if (ClassUtils.isAssignableValue(MessageSourceResolvable.class, throwable.getClass())) {
-            return messageSource.getMessage((MessageSourceResolvable) throwable, locale);
-        }
-
-        Throwable rootCause = ThrowableUtils.getRootCause(throwable);
-        if (ClassUtils.isAssignableValue(MessageSourceResolvable.class, rootCause.getClass())) {
-            return messageSource.getMessage((MessageSourceResolvable) rootCause, locale);
-        }
-
-        String code = String.format("Exception.%s", ClassUtils.getShortName(rootCause.getClass()));
-        return messageSource.getMessage(code, new Object[0], defaultMessage, locale);
-    }
+    String code = String.format("Exception.%s", ClassUtils.getShortName(rootCause.getClass()));
+    return messageSource.getMessage(code, new Object[0], defaultMessage, locale);
+  }
 
 }

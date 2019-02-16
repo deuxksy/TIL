@@ -15,41 +15,41 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class ConnectedClientCountBroadcaster {
 
-    private static final Long DEFAULT_TIMEOUT = 60L * 1000;
+  private static final Long DEFAULT_TIMEOUT = 60L * 1000;
 
-    private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+  private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public SseEmitter subscribe() {
-        SseEmitter emitter = new SseEmitter(DEFAULT_TIMEOUT);
-        emitter.onCompletion(() -> {
-            emitters.remove(emitter);
-            broadcast();
-        });
-        emitter.onTimeout(() -> {
-            emitters.remove(emitter);
-            broadcast();
-        });
+  public SseEmitter subscribe() {
+    SseEmitter emitter = new SseEmitter(DEFAULT_TIMEOUT);
+    emitter.onCompletion(() -> {
+      emitters.remove(emitter);
+      broadcast();
+    });
+    emitter.onTimeout(() -> {
+      emitters.remove(emitter);
+      broadcast();
+    });
 
-        emitters.add(emitter);
-        broadcast();
+    emitters.add(emitter);
+    broadcast();
 
-        return emitter;
+    return emitter;
+  }
+
+  private void broadcast() {
+    for (SseEmitter emitter : emitters) {
+      try {
+        emitter.send(SseEmitter.event().data(emitters.size()));
+      } catch (IllegalStateException | ClientAbortException ignore) {
+        // timeout or completion state
+        log.warn("unstable event stream connection (reason: {})", ignore.getMessage());
+        emitters.remove(emitter);
+      } catch (Exception ignore) {
+        log.error("failed to broadcast event to emitter (reason: " + ignore.getMessage() + ")");
+        emitters.remove(emitter);
+      }
     }
-
-    private void broadcast() {
-        for(SseEmitter emitter : emitters) {
-            try {
-                emitter.send(SseEmitter.event().data(emitters.size()));
-            } catch (IllegalStateException| ClientAbortException ignore) {
-                // timeout or completion state
-                log.warn("unstable event stream connection (reason: {})", ignore.getMessage());
-                emitters.remove(emitter);
-            } catch (Exception ignore) {
-                log.error("failed to broadcast event to emitter (reason: " + ignore.getMessage() + ")");
-                emitters.remove(emitter);
-            }
-        }
-    }
+  }
 
 }

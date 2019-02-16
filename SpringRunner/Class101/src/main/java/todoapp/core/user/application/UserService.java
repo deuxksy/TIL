@@ -15,36 +15,36 @@ import todoapp.core.user.domain.*;
 @Transactional
 public class UserService implements UserPasswordVerifier, UserJoinder, ProfilePictureChanger {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+  private UserRepository userRepository;
+  private PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+  public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
+  }
 
-    public User verify(String username, String rawPassword) {
-        return userRepository.findByUsername(username)
-                             .orElseThrow(() -> new UserEntityNotFoundException(username))
-                             .verifyPassword(passwordEncoder.encode(rawPassword));
-    }
+  public User verify(String username, String rawPassword) {
+    return userRepository.findByUsername(username)
+            .orElseThrow(() -> new UserEntityNotFoundException(username))
+            .verifyPassword(passwordEncoder.encode(rawPassword));
+  }
 
-    public User join(String username, String rawPassword) {
-        return userRepository.findByUsername(username).orElseGet(() -> {
-            User user = userRepository.save(new User(username, passwordEncoder.encode(rawPassword)));
-            log.info("new user joining: {}", user);
+  public User join(String username, String rawPassword) {
+    return userRepository.findByUsername(username).orElseGet(() -> {
+      User user = userRepository.save(new User(username, passwordEncoder.encode(rawPassword)));
+      log.info("new user joining: {}", user);
 
-            return user;
-        });
-    }
+      return user;
+    });
+  }
 
-    @Override
-    public User change(String username, ProfilePicture profilePicture) {
-        return userRepository.findByUsername(username)
-                             .orElseThrow(() -> new UserEntityNotFoundException(username))
-                             .changeProfilePicture(profilePicture);
-    }
+  @Override
+  public User change(String username, ProfilePicture profilePicture) {
+    return userRepository.findByUsername(username)
+            .orElseThrow(() -> new UserEntityNotFoundException(username))
+            .changeProfilePicture(profilePicture);
+  }
 
 }

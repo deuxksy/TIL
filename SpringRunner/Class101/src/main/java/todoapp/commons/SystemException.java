@@ -4,38 +4,38 @@ import org.springframework.context.MessageSourceResolvable;
 import org.springframework.util.ClassUtils;
 
 /**
- * ?‹œ?Š¤?…œ ?š´?š© ì¤? ë°œìƒ ê°??Š¥?•œ ìµœìƒ?œ„ ?˜ˆ?™¸ ?´?˜?Š¤
+ * ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ï¿½? ë°œìƒ ï¿½??ï¿½ï¿½?ï¿½ï¿½ ìµœìƒ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
  *
  * @author springrunner.kr@gmail.com
  */
 @SuppressWarnings("serial")
 public class SystemException extends RuntimeException implements MessageSourceResolvable {
 
-    public SystemException(String format, Object...args) {
-        super(String.format(format, args));
-    }
+  public SystemException(String format, Object... args) {
+    super(String.format(format, args));
+  }
 
-    public SystemException(Throwable cause) {
-        super(cause);
-    }
+  public SystemException(Throwable cause) {
+    super(cause);
+  }
 
-    public SystemException(String message, Throwable cause) {
-        super(message, cause);
-    }
+  public SystemException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
-    @Override
-    public String[] getCodes() {
-        return new String[]{ "Exception." + ClassUtils.getShortName(getClass()) };
-    }
+  @Override
+  public String[] getCodes() {
+    return new String[]{"Exception." + ClassUtils.getShortName(getClass())};
+  }
 
-    @Override
-    public Object[] getArguments() {
-        return new Object[0];
-    }
+  @Override
+  public Object[] getArguments() {
+    return new Object[0];
+  }
 
-    @Override
-    public String getDefaultMessage() {
-        return getMessage();
-    }
+  @Override
+  public String getDefaultMessage() {
+    return getMessage();
+  }
 
 }

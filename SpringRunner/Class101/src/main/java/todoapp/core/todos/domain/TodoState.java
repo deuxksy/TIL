@@ -5,25 +5,25 @@ package todoapp.core.todos.domain;
  *
  * @author springrunner.kr@gmail.com
  */
-public enum  TodoState {
+public enum TodoState {
 
-    ACTIVE("active", "처리해야 할 일"),
-    COMPLETED("COMPLETED", "완료된 할 일");
+  ACTIVE("active", "처리해야 할 일"),
+  COMPLETED("COMPLETED", "완료된 할 일");
 
-    private final String literal;
-    private final String description;
+  private final String literal;
+  private final String description;
 
-    TodoState(String literal, String description) {
-        this.literal = literal;
-        this.description = description;
-    }
+  TodoState(String literal, String description) {
+    this.literal = literal;
+    this.description = description;
+  }
 
-    public String getLiteral() {
-        return literal;
-    }
+  public String getLiteral() {
+    return literal;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
 }

@@ -8,47 +8,47 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * {@link Spreadsheet} ë³´ì¡° ?´?˜?Š¤
+ * {@link Spreadsheet} ë³´ì¡° ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
  *
  * @author springrunner.kr@gmail.com
  */
 public interface SpreadsheetSupport {
 
-    /**
-     * ì£¼ì–´ì§? ëª¨ë¸(model)?‚´?—?„œ {@link Spreadsheet}ë¥? ì°¾ì•„ ë°˜í™˜?•©?‹ˆ?‹¤.
-     *
-     * @param model ?Š¤?”„ë§? MVC ëª¨ë¸
-     * @return
-     * @throws IllegalArgumentException ê°’ì´ ?—†ê±°ë‚˜, ?‘ê°? ?´?ƒ ë°œê²¬?˜ë©? ë°œìƒ
-     */
-    default Spreadsheet obtainSpreadsheet(Map<String, Object> model) {
-        List<Spreadsheet> spreadsheets = model.values()
-                                              .stream()
-                                              .filter(it -> it instanceof Spreadsheet)
-                                              .map(it -> (Spreadsheet) it)
-                                              .collect(Collectors.toList());
-        if (spreadsheets.isEmpty()) {
-            throw new IllegalArgumentException("spreadsheet object inside the model is required");
-        }
-        if (spreadsheets.size() > 1) {
-            throw new IllegalArgumentException("multiple spreadsheet objects were found");
-        }
-        return spreadsheets.get(0);
+  /**
+   * ì£¼ì–´ï¿½? ëª¨ë¸(model)?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ {@link Spreadsheet}ï¿½? ì°¾ì•„ ë°˜í™˜?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
+   *
+   * @param model ?ï¿½ï¿½?ï¿½ï¿½ï¿½? MVC ëª¨ë¸
+   * @return
+   * @throws IllegalArgumentException ê°’ì´ ?ï¿½ï¿½ê±°ë‚˜, ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ ë°œê²¬?ï¿½ï¿½ï¿½? ë°œìƒ
+   */
+  default Spreadsheet obtainSpreadsheet(Map<String, Object> model) {
+    List<Spreadsheet> spreadsheets = model.values()
+            .stream()
+            .filter(it -> it instanceof Spreadsheet)
+            .map(it -> (Spreadsheet) it)
+            .collect(Collectors.toList());
+    if (spreadsheets.isEmpty()) {
+      throw new IllegalArgumentException("spreadsheet object inside the model is required");
     }
+    if (spreadsheets.size() > 1) {
+      throw new IllegalArgumentException("multiple spreadsheet objects were found");
+    }
+    return spreadsheets.get(0);
+  }
 
-    /**
-     * ì£¼ì–´ì§? ?? ëª©ë¡?— ê°’ì„ ?—°ê²°í•´?„œ ?•˜?‚˜?˜ ë¬¸ì?—´ë¡? ë§Œë“­?‹ˆ?‹¤.
-     * ë¬¸ì?—´ ?—°ê²°ì‹œ êµ¬ë¶„ ë¬¸ìë¥? ?‚½?…?•©?‹ˆ?‹¤.
-     *
-     * @param cells     ë°˜ë³µ?
-     * @param delimiter êµ¬ë¶„ ë¬¸ì
-     * @return
-     */
-    default String joining(Iterable<Spreadsheet.Cell<?>> cells, CharSequence delimiter) {
-        return StreamUtils.createStreamFromIterator(cells.iterator())
-                          .map(Spreadsheet.Cell::getValue)
-                          .map(String::valueOf)
-                          .collect(Collectors.joining(delimiter));
-    }
+  /**
+   * ì£¼ì–´ï¿½? ?? ëª©ë¡?ï¿½ï¿½ ê°’ì„ ?ï¿½ï¿½ê²°í•´?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¬¸ì?ï¿½ï¿½ï¿½? ë§Œë“­?ï¿½ï¿½?ï¿½ï¿½.
+   * ë¬¸ì?ï¿½ï¿½ ?ï¿½ï¿½ê²°ì‹œ êµ¬ë¶„ ë¬¸ìï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
+   *
+   * @param cells     ë°˜ë³µ?ï¿½ï¿½
+   * @param delimiter êµ¬ë¶„ ë¬¸ì
+   * @return
+   */
+  default String joining(Iterable<Spreadsheet.Cell<?>> cells, CharSequence delimiter) {
+    return StreamUtils.createStreamFromIterator(cells.iterator())
+            .map(Spreadsheet.Cell::getValue)
+            .map(String::valueOf)
+            .collect(Collectors.joining(delimiter));
+  }
 
 }

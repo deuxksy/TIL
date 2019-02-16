@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HttpResourceLoaderController {
 
-	private ResourceLoader resourceLoader;
+  private ResourceLoader resourceLoader;
 
-	public HttpResourceLoaderController(ResourceLoader resourceLoader) {
-		this.resourceLoader = resourceLoader;
-	}
-	
-	@RequestMapping("/google")
-	@ResponseBody
-	public Resource google() {
-		return this.resourceLoader.getResource("https://google.com");
-	}
-	
+  public HttpResourceLoaderController(ResourceLoader resourceLoader) {
+    this.resourceLoader = resourceLoader;
+  }
+
+  @RequestMapping("/google")
+  @ResponseBody
+  public Resource google() {
+    return this.resourceLoader.getResource("https://google.com");
+  }
+
 }
