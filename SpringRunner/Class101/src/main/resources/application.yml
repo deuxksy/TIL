@@ -1,0 +1,8 @@
+site:
+  author: Arawn-Park!!!
+  description: todoapp workshop 1 day!!!
+
+logging.level:
+  todoapp: DEBUG
+  org.springframework.boot: INFO
+  org.springframework.web: DEBUG
