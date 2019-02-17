@@ -10,25 +10,25 @@ import java.util.Locale;
  */
 public interface ExceptionMessageTranslator {
 
-  /**
-   * 입력된 예외에 대해 메시지를 작성해서 반환한다.
-   * 기본 메시지(defaultMessage)로 예외 개체 내부에 메시지를 사용한다.
-   *
-   * @param throwable 예외 개체
-   * @param locale    언어/국가
-   * @return
-   */
-  String getMessage(Throwable throwable, Locale locale);
+    /**
+     * 입력된 예외에 대해 메시지를 작성해서 반환한다.
+     * 기본 메시지(defaultMessage)로 예외 개체 내부에 메시지를 사용한다.
+     *
+     * @param throwable 예외 개체
+     * @param locale 언어/국가
+     * @return
+     */
+    String getMessage(Throwable throwable, Locale locale);
 
-  /**
-   * 입력된 예외에 대해 메시지를 작성해서 반환한다.
-   * 적절한 메시지를 찾지 못하면 기본 메시지를 반환한다.
-   *
-   * @param throwable      예외 개체
-   * @param defaultMessage 기본 메시지
-   * @param locale         언어/국가
-   * @return
-   */
-  String getMessage(Throwable throwable, String defaultMessage, Locale locale);
+    /**
+     * 입력된 예외에 대해 메시지를 작성해서 반환한다.
+     * 적절한 메시지를 찾지 못하면 기본 메시지를 반환한다.
+     *
+     * @param throwable 예외 개체
+     * @param defaultMessage 기본 메시지
+     * @param locale 언어/국가
+     * @return
+     */
+    String getMessage(Throwable throwable, String defaultMessage, Locale locale);
 
 }

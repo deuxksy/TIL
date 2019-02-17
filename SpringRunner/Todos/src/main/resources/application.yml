@@ -1,6 +1,9 @@
 site:
   author: Arawn-Park!!!
   description: todoapp workshop 1 day!!!
+  features:
+    auth: true
+    onlineUsersCounter: true
 
 logging.level:
   todoapp: DEBUG

@@ -13,15 +13,15 @@ import java.util.stream.StreamSupport;
  */
 public interface StreamUtils {
 
-  /**
-   * {@link Iterator}로 {@link Stream}을 생성한다.
-   *
-   * @param iterator null 값이 아닌 이터레이터 개체
-   * @return
-   */
-  static <T> Stream<T> createStreamFromIterator(Iterator<T> iterator) {
-    Spliterator<T> spliterator = Spliterators.spliteratorUnknownSize(iterator, Spliterator.NONNULL);
-    return StreamSupport.stream(spliterator, false);
-  }
+    /**
+     * {@link Iterator}로 {@link Stream}을 생성한다.
+     *
+     * @param iterator null 값이 아닌 이터레이터 개체
+     * @return
+     */
+    static <T> Stream<T> createStreamFromIterator(Iterator<T> iterator) {
+        Spliterator<T> spliterator = Spliterators.spliteratorUnknownSize(iterator, Spliterator.NONNULL);
+        return StreamSupport.stream(spliterator, false);
+    }
 
 }

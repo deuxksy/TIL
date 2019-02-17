@@ -9,12 +9,12 @@ import todoapp.commons.SystemException;
  */
 public class UserEntityException extends SystemException {
 
-  public UserEntityException(String format, Object... args) {
-    super(format, args);
-  }
+    public UserEntityException(String format, Object... args) {
+        super(format, args);
+    }
 
-  public UserEntityException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public UserEntityException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

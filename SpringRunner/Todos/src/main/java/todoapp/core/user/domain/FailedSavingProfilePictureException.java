@@ -7,8 +7,8 @@ package todoapp.core.user.domain;
  */
 public class FailedSavingProfilePictureException extends UserEntityException {
 
-  public FailedSavingProfilePictureException(String message, Throwable throwable) {
-    super(message, throwable);
-  }
+    public FailedSavingProfilePictureException(String message, Throwable throwable) {
+        super(message, throwable);
+    }
 
 }

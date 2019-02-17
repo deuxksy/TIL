@@ -7,12 +7,12 @@ package todoapp.core.user.domain;
  */
 public class FailedLoadingProfilePictureException extends UserEntityException {
 
-  public FailedLoadingProfilePictureException(String format, Object... args) {
-    super(format, args);
-  }
+    public FailedLoadingProfilePictureException(String format, Object... args) {
+        super(format, args);
+    }
 
-  public FailedLoadingProfilePictureException(String message, Throwable throwable) {
-    super(message, throwable);
-  }
+    public FailedLoadingProfilePictureException(String message, Throwable throwable) {
+        super(message, throwable);
+    }
 
 }

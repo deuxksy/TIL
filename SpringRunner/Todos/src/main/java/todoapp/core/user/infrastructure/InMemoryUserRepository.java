@@ -25,29 +25,29 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Repository
 public class InMemoryUserRepository implements UserRepository, ApplicationRunner {
 
-  private final Logger log = LoggerFactory.getLogger(this.getClass());
-  private final List<User> users = new CopyOnWriteArrayList<>();
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final List<User> users = new CopyOnWriteArrayList<>();
 
-  private PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
-  public InMemoryUserRepository(PasswordEncoder passwordEncoder) {
-    this.passwordEncoder = passwordEncoder;
-  }
+    public InMemoryUserRepository(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
-  @Override
-  public Optional<User> findByUsername(String username) {
-    return users.stream().filter(user -> Objects.equals(user.getUsername(), username)).findAny();
-  }
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return users.stream().filter(user -> Objects.equals(user.getUsername(), username)).findAny();
+    }
 
-  @Override
-  public User save(User user) {
-    users.add(user);
-    return user;
-  }
+    @Override
+    public User save(User user) {
+        users.add(user);
+        return user;
+    }
 
-  @Override
-  public void run(ApplicationArguments args) throws Exception {
-    save(new User("user", passwordEncoder.encode("password")));
-  }
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        save(new User("user", passwordEncoder.encode("password")));
+    }
 
 }

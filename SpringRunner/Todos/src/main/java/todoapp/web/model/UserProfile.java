@@ -2,6 +2,7 @@ package todoapp.web.model;
 
 import todoapp.core.user.domain.User;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -11,33 +12,33 @@ import java.util.Objects;
  */
 public class UserProfile {
 
-  private static final String DEFAULT_PROFILE_PICTURE_URL = "/assets/img/profile-picture.png";
+    private static final String DEFAULT_PROFILE_PICTURE_URL = "/assets/img/profile-picture.png";
 
-  private User user;
+    private User user;
 
-  public UserProfile(User user) {
-    this.user = Objects.requireNonNull(user, "user object must be not null");
-  }
-
-  public String getName() {
-    return user.getUsername();
-  }
-
-  public String getProfilePictureUrl() {
-    if (user.hasProfilePicture()) {
-      throw new UnsupportedOperationException("사용자 프로필 이미지 주소(Url)를 작성하세요.");
+    public UserProfile(User user) {
+        this.user = Objects.requireNonNull(user, "user object must be not null");
     }
 
-    // 프로필 이미지가 없으면 기본 프로필 이미지를 사용한다.
-    return DEFAULT_PROFILE_PICTURE_URL;
-  }
+    public String getName() {
+        return user.getUsername();
+    }
 
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder("UserProfile{");
-    sb.append("name=").append(getName());
-    sb.append('}');
-    return sb.toString();
-  }
+    public String getProfilePictureUrl() {
+        if (user.hasProfilePicture()) {
+            return "/user/profile-picture?time=" + new Date().getTime();
+        }
+
+        // 프로필 이미지가 없으면 기본 프로필 이미지를 사용한다.
+        return DEFAULT_PROFILE_PICTURE_URL;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("UserProfile{");
+        sb.append("name=").append(getName());
+        sb.append('}');
+        return sb.toString();
+    }
 
 }

@@ -11,22 +11,21 @@ import java.net.URI;
 @Embeddable
 public class ProfilePicture {
 
-  private URI uri;
+    private URI uri;
 
-  // for hibernate
-  private ProfilePicture() {
-  }
+    // for hibernate
+    private ProfilePicture() { }
 
-  public ProfilePicture(URI uri) {
-    this.uri = uri;
-  }
+    public ProfilePicture(URI uri) {
+        this.uri = uri;
+    }
 
-  public URI getUri() {
-    return uri;
-  }
+    public URI getUri() {
+        return uri;
+    }
 
-  private void setUri(URI uri) {
-    this.uri = uri;
-  }
+    private void setUri(URI uri) {
+        this.uri = uri;
+    }
 
 }

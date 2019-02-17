@@ -1,9 +1,11 @@
 package todoapp.core.todos.domain;
 
-public class TodoEntityException extends RuntimeException {
+import todoapp.commons.SystemException;
 
-  public TodoEntityException(String format, Object... args) {
-    super(String.format(format, args));
-  }
+public class TodoEntityException extends SystemException {
+
+    public TodoEntityException(String format, Object... args) {
+        super(String.format(format, args));
+    }
 
 }

@@ -12,42 +12,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * ?��?��?�� ?��?�� ?��간을 측정?��?�� ?��?��?��?�� 구현�?
+ * 핸들러 실행 시간을 측정하는 인터셉터 구현체
  *
  * @author springrunner.kr@gmail.com
  */
 public class ExecutionTimeHandlerInterceptor implements HandlerInterceptor, Ordered {
 
-  private static final String STOP_WATCH_ATTR_NAME = "ExecutionTimeHandlerInterceptor.StopWatch";
+    private static final String STOP_WATCH_ATTR_NAME = "ExecutionTimeHandlerInterceptor.StopWatch";
 
-  private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-  @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    StopWatch stopWatch = new StopWatch(getHandlerName(handler));
-    stopWatch.start();
-    request.setAttribute(STOP_WATCH_ATTR_NAME, stopWatch);
-    return true;
-  }
-
-  @Override
-  public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-    StopWatch stopWatch = (StopWatch) request.getAttribute(STOP_WATCH_ATTR_NAME);
-    stopWatch.stop();
-
-    log.debug("[" + getHandlerName(handler) + "] executeTime : " + stopWatch.getTotalTimeMillis() + "ms");
-  }
-
-  private String getHandlerName(Object handler) {
-    if (handler instanceof HandlerMethod) {
-      return ((HandlerMethod) handler).getShortLogMessage();
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        StopWatch stopWatch = new StopWatch(getHandlerName(handler));
+        stopWatch.start();
+        request.setAttribute(STOP_WATCH_ATTR_NAME, stopWatch);
+        return true;
     }
-    return handler.toString();
-  }
 
-  @Override
-  public int getOrder() {
-    return Integer.MIN_VALUE;
-  }
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        StopWatch stopWatch = (StopWatch) request.getAttribute(STOP_WATCH_ATTR_NAME);
+        stopWatch.stop();
+
+        log.debug("[" + getHandlerName(handler) + "] executeTime : " + stopWatch.getTotalTimeMillis() + "ms");
+    }
+
+    private String getHandlerName(Object handler) {
+        if (handler instanceof HandlerMethod) {
+            return ((HandlerMethod) handler).getShortLogMessage();
+        }
+        return handler.toString();
+    }
+
+    @Override
+    public int getOrder() {
+        return Integer.MIN_VALUE;
+    }
 
 }

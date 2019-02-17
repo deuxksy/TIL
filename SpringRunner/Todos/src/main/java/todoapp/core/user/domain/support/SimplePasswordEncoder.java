@@ -7,15 +7,16 @@ import todoapp.core.user.domain.PasswordEncoder;
 import java.nio.charset.Charset;
 
 /**
- * @author springrunner.kr@gmail.com
  * @{link PasswordEncoder} 기본 구현체
+ *
+ * @author springrunner.kr@gmail.com
  */
 @Component
 public class SimplePasswordEncoder implements PasswordEncoder {
 
-  @Override
-  public String encode(String password) {
-    return DigestUtils.md5DigestAsHex(password.getBytes(Charset.defaultCharset()));
-  }
+    @Override
+    public String encode(String password) {
+        return DigestUtils.md5DigestAsHex(password.getBytes(Charset.defaultCharset()));
+    }
 
 }
