@@ -1,0 +1,26 @@
+# [FastCampus - Docker](https://www.fastcampus.co.kr/dev_workshop_devops/)
+
+- dcoker type 1 은 없나요? 
+- 18 쓸지 17 쓸지 차이를 비교 해보자
+- cli 가 익숙 하지 않으면 Kitematic 도 추천
+- 64 bit 에서만 돌아감
+- 저장소 (Registory{무료}, DTR{유료|) 필수 docker cloud 사용 추천
+- docker con 영상 추천
+- 평균 지속 시간 2.5일
+- docker client host 연동 주희 2376 port 확인 3가지 환경 변수 값 확인
+- docker tcp 포트가 아님 unix 소켓 과 데몬으로 바인딩
+- docker 사용자 그룹 설정에 따른 실행이 안될수 있음 권한은 기본사용자 기본그룹으로 사용하기
+- docker hub 사설 레파지토리 필요함, s3, rdis 활용 해보자
+- base 이미지 선택? aws 용으로 가야 하나? 아니면 centos 가야 하나?
+- RUN 하나당 하나의 레이어
+- dockerfile
+  - copy 와 add 는 다르다
+    - add 는 압축파일이면 붙여넣어서 압축 해제
+  - cmd 보다는 entrypoint
+  - USER 는 중간 중간 변경 가능
+  - 빌드도구는 설치 하지 마라 - JRE를 써라
+  - apt-get clean 이용해서 안쓰는거는 지워라
+  - -P 자동 바인딩
+  - docker host 이미지
+  - vagrant
+  - coreos
