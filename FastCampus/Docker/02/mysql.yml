@@ -1,0 +1,9 @@
+mydb:
+  image: mysql:5.7
+  environment: 
+    - MYSQL_ROOT_PASSWORD=qwe123
+  ports:
+    - 3306:3306
+  volumes:
+    - D:\ZZIZILY\Version\Github\deuxksy\TIL\FastCampus\Docker\02\my.cnf:/etc/mysql/conf.d/my.cnf
+    - D:\ZZIZILY\Version\Github\deuxksy\TIL\FastCampus\Docker\02\mysql:/var/lib/mysql
